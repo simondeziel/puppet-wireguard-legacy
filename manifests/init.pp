@@ -11,7 +11,6 @@ class wireguard (
   if $restart_networkd and ! $systemd::manage_networkd {
     service { 'systemd-networkd': }
     Systemd::Network <| |>
-    ~> Class['systemd::systemctl::daemon_reload']
     ~> Service['systemd-networkd']
   }
 }
