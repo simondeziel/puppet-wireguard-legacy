@@ -1,10 +1,8 @@
 #!/bin/sh
 # Author: Simon Deziel
 
-d="/etc/wireguard"
-cd "$d" 2> /dev/null || exit 0
+cd "/etc/wireguard" 2> /dev/null || exit 0
 
-i=0
 echo '{
   "wireguard": {'
 for f in ./*.pub; do
@@ -13,7 +11,6 @@ for f in ./*.pub; do
   iface="${iface%.pub}"
   read -r p < "$f"
   echo "    \"${iface}\": \"${p}\","
-  i=$((++1))
 done 2> /dev/null
 echo '  }
 }'
